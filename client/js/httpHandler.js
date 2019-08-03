@@ -31,9 +31,10 @@
     $.ajax({
       type: 'GET',
       url: serverUrl,
-      success: () => {
+      success: (data) => {
         //send random command to the server
-        SwimTeam.move("up")
+        SwimTeam.move(data);
+        setTimeout(getRequest(), 3000);
         // window.location = window.location.href;
       }
     })

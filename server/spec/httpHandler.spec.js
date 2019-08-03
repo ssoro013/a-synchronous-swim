@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const server = require('./mockServer');
 
 const httpHandler = require('../js/httpHandler');
-
+const messages = require('../js/messageQueue');
 
 
 describe('server responses', () => {
@@ -26,15 +26,11 @@ describe('server responses', () => {
     // client needs to send ajax request to the server
     // server receives it and responds/sends something back
     // test that the status code is 200 for success
-
-    // var arr = ["left", "right", "top", "down"]
-    // var random = Math.floor(Math.random() * arr.length)
-
     let { req, res } = server.mock('http://127.0.0.1:3000/', 'GET');
     httpHandler.router(req, res);
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
-    expect(res._data.toString()).to.equal('right');
+    expect(res._data.toString()).to.equal();
     done();
   });
 
